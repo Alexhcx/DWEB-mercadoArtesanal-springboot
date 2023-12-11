@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.puc.mercadoartesanal.dtos.ArtesanalRecordDto;
-import com.example.puc.mercadoartesanal.models.ArtesanalModel;
+import com.example.puc.mercadoartesanal.dtos.ProdutosDTO;
+import com.example.puc.mercadoartesanal.models.Produtos;
 import com.example.puc.mercadoartesanal.repositories.ArtesanalRepository;
 
 import jakarta.validation.Valid;
@@ -28,20 +28,20 @@ public class ArtesanalController {
     ArtesanalRepository artesanalRepository;
 
     @PostMapping("/produtosArtesanais")
-    public ResponseEntity<ArtesanalModel> cadastrarProduto(@RequestBody @Valid ArtesanalRecordDto artesanalRecordDto) {
-        var artesanalModel = new ArtesanalModel();
+    public ResponseEntity<Produtos> cadastrarProduto(@RequestBody @Valid ProdutosDTO artesanalRecordDto) {
+        var artesanalModel = new Produtos();
         BeanUtils.copyProperties(artesanalRecordDto, artesanalModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(artesanalRepository.save(artesanalModel));
     }
 
     @GetMapping("/produtosArtesanais")
-    public ResponseEntity<List<ArtesanalModel>> listarTodosProdutos() {
+    public ResponseEntity<List<Produtos>> listarTodosProdutos() {
         return ResponseEntity.status(HttpStatus.OK).body(artesanalRepository.findAll());
     }
 
     @GetMapping("/produtosArtesanais/{id}")
     public ResponseEntity<Object> listarProdutoPorId(@PathVariable(value="id") long id) {
-        Optional<ArtesanalModel> produtoArtesanal = artesanalRepository.findById(id);
+        Optional<Produtos> produtoArtesanal = artesanalRepository.findById(id);
         if (produtoArtesanal.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado.");
         }
@@ -49,8 +49,8 @@ public class ArtesanalController {
     }
 
     @PutMapping("/produtosArtesanais/{id}")
-    public ResponseEntity<Object> atualizarProduto(@PathVariable(value="id") long id, @RequestBody @Valid ArtesanalRecordDto artesanalRecordDto) {
-        Optional<ArtesanalModel> produtoArtesanal = artesanalRepository.findById(id);
+    public ResponseEntity<Object> atualizarProduto(@PathVariable(value="id") long id, @RequestBody @Valid ProdutosDTO artesanalRecordDto) {
+        Optional<Produtos> produtoArtesanal = artesanalRepository.findById(id);
         if (produtoArtesanal.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado.");
         }
@@ -61,7 +61,7 @@ public class ArtesanalController {
 
     @DeleteMapping("/produtosArtesanais/{id}")
     public ResponseEntity<Object> deletarProduto(@PathVariable(value="id") long id) {
-        Optional<ArtesanalModel> produtoArtesanal = artesanalRepository.findById(id);
+        Optional<Produtos> produtoArtesanal = artesanalRepository.findById(id);
         if (produtoArtesanal.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado.");
         }
