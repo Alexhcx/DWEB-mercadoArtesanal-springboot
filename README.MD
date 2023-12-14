@@ -25,6 +25,20 @@ A API possui os seguintes endpoints:
 - `PUT /produtosArtesanais/{id}`: Atualiza um produto artesanal pelo ID.
 - `DELETE /produtosArtesanais/{id}`: Deleta um produto artesanal pelo ID.
 
+## Formato JSON 
+
+    - Aqui está um exemplo de como manipular a API com JSON:
+
+{
+    "nomeProduto": "rede artesanal trance | casal",
+    "tipoProduto": "decoração",
+    "descricao": "Apresentamos a Rede Trancê, uma obra-prima 100% artesanal, reconhecida com o prestigioso prêmio Reconhecimento de Excelência Artesanal do Cone Sul, apoiado pelas Nações Unidas. Nossa inspiração provém das autênticas tiras de mamucaba, utilizadas para reforçar o punho da rede, resultando em um design trançado verdadeiramente excepcional. Cada rede é meticulosamente montada à mão, garantindo que o trançado seja perfeito para oferecer o máximo conforto e permitir que o seu corpo respire livremente durante o uso. Utilizamos apenas algodão natural e orgânico, cultivado por famílias agricultoras comprometidas com a sustentabilidade. Além disso, o punho, caréu e mamucaba também são cuidadosamente confeccionados por nossos talentosos artesãos.",
+    "imagem1": "https://i.imgur.com/lydfpJt.png", 
+    "imagem2": "https://i.imgur.com/kxoZCrE.png",
+    "imagem3": "https://i.imgur.com/rRAyq8q.png",
+    "preco": 1530.30
+}
+
 ## Como Rodar o Projeto
 
 1. Clone o repositório para a sua máquina local usando `git clone`.
