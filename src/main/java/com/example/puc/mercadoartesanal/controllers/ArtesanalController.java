@@ -27,6 +27,12 @@ public class ArtesanalController {
     @Autowired
     ArtesanalRepository artesanalRepository;
 
+        /**
+     * Endpoint para criar um novo produto artesanal.
+     * @param artesanalRecordDto - DTO com as informações do produto a ser criado.
+     * @return ResponseEntity com o status HTTP e o produto criado.
+     */
+
     @PostMapping("/produtosArtesanais")
     public ResponseEntity<Produtos> cadastrarProduto(@RequestBody @Valid ProdutosDTO artesanalRecordDto) {
         var artesanalModel = new Produtos();
@@ -34,10 +40,21 @@ public class ArtesanalController {
         return ResponseEntity.status(HttpStatus.CREATED).body(artesanalRepository.save(artesanalModel));
     }
 
+    /**
+     * Endpoint para listar todos os produtos artesanais.
+     * @return ResponseEntity com o status HTTP e a lista de produtos.
+     */
+
     @GetMapping("/produtosArtesanais")
     public ResponseEntity<List<Produtos>> listarTodosProdutos() {
         return ResponseEntity.status(HttpStatus.OK).body(artesanalRepository.findAll());
     }
+
+     /**
+     * Endpoint para buscar um produto artesanal pelo ID.
+     * @param id - ID do produto a ser buscado.
+     * @return ResponseEntity com o status HTTP e o produto encontrado, ou mensagem de erro se não encontrado.
+     */
 
     @GetMapping("/produtosArtesanais/{id}")
     public ResponseEntity<Object> listarProdutoPorId(@PathVariable(value="id") long id) {
@@ -47,6 +64,13 @@ public class ArtesanalController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(produtoArtesanal.get());
     }
+
+     /**
+     * Endpoint para atualizar um produto artesanal.
+     * @param id - ID do produto a ser atualizado.
+     * @param artesanalRecordDto - DTO com as novas informações do produto.
+     * @return ResponseEntity com o status HTTP e o produto atualizado, ou mensagem de erro se não encontrado.
+     */
 
     @PutMapping("/produtosArtesanais/{id}")
     public ResponseEntity<Object> atualizarProduto(@PathVariable(value="id") long id, @RequestBody @Valid ProdutosDTO artesanalRecordDto) {
@@ -58,6 +82,12 @@ public class ArtesanalController {
         BeanUtils.copyProperties(artesanalRecordDto, artesanalModel);
         return ResponseEntity.status(HttpStatus.OK).body(artesanalRepository.save(artesanalModel));
     }
+
+        /**
+     * Endpoint para deletar um produto artesanal.
+     * @param id - ID do produto a ser deletado.
+     * @return ResponseEntity com o status HTTP e mensagem de sucesso, ou mensagem de erro se não encontrado.
+     */
 
     @DeleteMapping("/produtosArtesanais/{id}")
     public ResponseEntity<Object> deletarProduto(@PathVariable(value="id") long id) {
