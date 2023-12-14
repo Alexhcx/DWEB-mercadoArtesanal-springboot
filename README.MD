@@ -13,7 +13,7 @@ Este projeto é uma API REST para um mercado de produtos artesanais. Ele permite
 - Java
 - Spring Boot
 - JPA/Hibernate
-- MySQL
+- PostgreSQL
 
 ## Endpoints
 
